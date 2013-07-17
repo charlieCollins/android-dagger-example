@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.squareup.dagger.americano"
+    android:versionCode="1"
+    android:versionName="1.0">
+
+  <uses-permission android:name="android.permission.INTERNET"/>
+
+  <!-- 14 = Android 4.0+ -->
+  <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="17"/>
+
+  <application
+      android:label="Americano"
+      android:icon="@drawable/ic_launcher"
+      android:name=".app.AmericanoApp"
+      android:theme="@android:style/Theme.Holo"
+      >
+    <activity
+        android:name=".login.LoginActivity"
+        android:label="Americano"
+        android:configChanges="keyboard|keyboardHidden"
+        android:uiOptions="splitActionBarWhenNarrow"
+        >
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+    </activity>
+    <activity
+        android:name=".timers.TimerActivity"
+        />
+
+    <!-- Development activities. -->
+    <activity
+        android:name=".dev.EditConfigActivity"
+        android:label="Edit Config"
+        />
+
+  </application>
+</manifest>
