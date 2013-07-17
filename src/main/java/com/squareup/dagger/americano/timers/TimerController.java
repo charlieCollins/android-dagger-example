@@ -10,7 +10,7 @@ public final class TimerController {
 
   private Runnable runnable = new Runnable() {
     @Override public void run() {
-      if (handler == null || !timerRunning) return;
+      if (activity == null || !timerRunning) return;
       activity.setElapsedNanos(System.nanoTime() - timerStartNanos);
       handler.postDelayed(this, 16);
     }
