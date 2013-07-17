@@ -19,6 +19,11 @@ public class LoginController {
 
   public void onResume(LoginActivity activity) {
     this.activity = activity;
+
+    if (navigator.getSession() != null) {
+      activity.startActivity(navigator.newHomeIntent(0));
+      activity.finish();
+    }
   }
 
   public void onPause(LoginActivity activity) {

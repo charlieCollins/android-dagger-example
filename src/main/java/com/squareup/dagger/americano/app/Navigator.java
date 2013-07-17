@@ -1,9 +1,10 @@
 package com.squareup.dagger.americano.app;
 
-import com.squareup.dagger.americano.app.Config;
-import com.squareup.dagger.americano.app.Session;
+import android.content.Intent;
 
 public interface Navigator {
   void setConfig(Config config);
   void setSession(Session session);
+  Session getSession();
+  Intent newHomeIntent(int flags);
 }

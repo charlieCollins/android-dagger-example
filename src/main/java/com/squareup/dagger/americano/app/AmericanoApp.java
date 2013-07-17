@@ -3,7 +3,6 @@ package com.squareup.dagger.americano.app;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Intent;
-import com.squareup.dagger.americano.login.LoginActivity;
 import com.squareup.dagger.americano.service.RealLoginServiceModule;
 import com.squareup.dagger.americano.service.mock.MockLoginServiceModule;
 import com.squareup.dagger.americano.timers.TimerActivity;
@@ -29,21 +28,23 @@ public class AmericanoApp extends Application implements Navigator {
 
   @Override public void setConfig(Config config) {
     resetObjectGraph(config);
-
-    Intent intent = new Intent(this, LoginActivity.class);
-    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-    startActivity(intent);
+    startActivity(newHomeIntent(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
   }
 
   @Override public void setSession(Session session) {
-    if (this.session != null) {
-      throw new IllegalStateException("Session already exists!");
-    }
+    if (this.session != null) throw new IllegalStateException("Session already exists!");
     this.session = session;
+    startActivity(newHomeIntent(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
+  }
 
+  public Intent newHomeIntent(int flags) {
     Intent intent = new Intent(this, TimerActivity.class);
-    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-    startActivity(intent);
+    intent.setFlags(flags);
+    return intent;
+  }
+
+  @Override public Session getSession() {
+    return session;
   }
 
   private void resetObjectGraph(Config config) {
